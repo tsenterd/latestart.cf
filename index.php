@@ -3,7 +3,9 @@
 
 <title>Late Start</title>
 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Cabin:600' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+
 
 <script type="text/javascript">
 
@@ -32,7 +34,7 @@
     {
     	var today = new Date();
 	
-		document.getElementById("date").innerHTML = today.toISOString().slice(0, -14);
+		document.getElementById("date").innerHTML = today.toDateString();
 	
 		currentTime = today.get
 	
@@ -56,13 +58,13 @@
 		for (var i = 0; i < lateStarts.length; i++) {												
 												
 			if (today.getTime() === lateStarts[i].getTime()){
-				document.getElementById("lateStart").innerHTML = "Today is a late start.";
-				document.getElementById("lateStart").classList.add('green');
+				document.getElementById("lateStart").innerHTML = "TODAY IS A LATE START";
+				document.getElementById("lateStart").classList.add('blue');
 				break;
 			}
 			else
 			{
-				document.getElementById("lateStart").innerHTML = "Today is not a late start. ****.";
+				document.getElementById("lateStart").innerHTML = "TODAY IS NOT A LATE START";
 				document.getElementById("lateStart").classList.add('red');
 			}
 			
@@ -76,7 +78,7 @@
 			if (tomorrow.getTime() === lateStarts[i].getTime())
 			{
 				document.getElementById("tomorrow").innerHTML = "Tomorrow is a late start.";
-				document.getElementById("tomorrow").classList.add('green');
+				document.getElementById("tomorrow").classList.add('blue');
 				break;
 			}
 			else
@@ -96,16 +98,77 @@
 	padding: 0;
 }
 
-html {
-	background-color: #FFEED5;
-}
-
 a {
+	color: tomato;
 	text-decoration: none;
 }
 
-.green {
-	color: #137c13;
+a[href^="tel:"]:before {
+    content: "\260E";
+    display: block;
+    margin-right: 0.2em;
+}
+
+.inline-link {
+  display: inline-block;
+  margin: 0 0.2em;
+  padding: 3px;
+  background: #08C;
+  border-radius: 2px;
+  transition: all 0.3s ease-out;
+
+  /* Font styles */
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+
+.inline-link:hover   { background: #53A7EA; }
+.inline-link:active  { background: #C4E1F8; }
+.inline-link:visited { background: #F2BF97; }
+	
+
+.metro {
+  font-family: 'Lato', sans-serif;
+  display: inline;
+  padding: 10px;
+  width: intrinsic;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #08C;
+
+ -webkit-transition: 0.3s ease-out;
+ -moz-transition: 0.3s ease-out;
+ -o-transition: 0.3s ease-out;
+ -ms-transition: 0.3s ease-out;
+ transition: 0.3s ease-out;
+
+  /* Font styles */
+  color: white;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.metro:hover { background: #0AF; }
+
+.metro.three-d {
+  position: relative;
+  box-shadow: 
+    1px 1px #53A7EA,
+    2px 2px #53A7EA,
+    3px 3px #53A7EA;
+  transition: all 0.1s ease-in;
+}
+
+.metro.three-d:active { 
+  box-shadow: none;
+  top: 3px;
+  left: 3px;
+}
+
+.blue {
+	color: rgb(0, 120, 231);
 }
 
 .red {
@@ -113,10 +176,23 @@ a {
 }
 
 p {
-	font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
     font-size: 50px;
 	text-align: center;
+}
+
+#links {
+	display: block;
+	text-align: center;
+}
+
+#button_container {
+	display: block;
+	width: 331px;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;	
 }
 
 #tomorrow {
@@ -124,7 +200,7 @@ p {
 }
 
 .number {
-	font-family: 'Open Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
 	color: #000000;
     font-weight: bold;
     font-size: 15px;
@@ -133,14 +209,14 @@ p {
 }
 
 h1 {
-	font-family: 'Open Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
     color: #493F3D;
     font-size: 25px;
 	text-align: center;
 }
 
 h2 {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
     font-size: 20px;
     text-align: center;
 }
@@ -173,64 +249,6 @@ h2 {
 	margin-top: 40px;
 }
 
-/* Modified pure-button styling from https://github.com/yui/pure/blob/master/src/buttons/css/buttons.css */
-
-.pure-button {
-	position: relative;
-	top: 20px;
-    font-family: 'Open Sans', sans-serif;
-    *font-size: 90%; /*IE 6/7 - To reduce IE's oversized button text*/
-    *overflow: visible; /*IE 6/7 - Because of IE's overly large left/right padding on buttons */
-    padding: 0.5em 1.5em 0.5em;
-    color: #444; /* rgba not supported (IE 8) */
-    color: rgba(0, 0, 0, 0.80); /* rgba supported */
-    *color: #444; /* IE 6 & 7 */
-    border: 1px solid #999;  /*IE 6/7/8*/
-    border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
-    background-color: #E6E6E6;
-    text-decoration: none;
-    border-radius: 2px;
-    /* Transitions */
-    -webkit-transition: 0.1s linear -webkit-box-shadow;
-    -moz-transition: 0.1s linear -moz-box-shadow;
-    -ms-transition: 0.1s linear box-shadow;
-    -o-transition: 0.1s linear box-shadow;
-    transition: 0.1s linear box-shadow;
-}
-
-.pure-button-hover,
-.pure-button:hover,
-.pure-button:focus {
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000',GradientType=0);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0,0,0, 0.05)), to(rgba(0,0,0, 0.10)));
-    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
-    background-image: -moz-linear-gradient(top, rgba(0,0,0, 0.05) 0%, rgba(0,0,0, 0.10));
-    background-image: -ms-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
-    background-image: -o-linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
-    background-image: linear-gradient(transparent, rgba(0,0,0, 0.05) 40%, rgba(0,0,0, 0.10));
-}
-.pure-button:focus {
-    outline: 0;
-}
-.pure-button-active,
-.pure-button:active {
-    box-shadow: 0 0 0 1px rgba(0,0,0, 0.15) inset, 0 0 6px rgba(0,0,0, 0.20) inset;
-}
-
-/* Firefox: Get rid of the inner focus border */
-.pure-button::-moz-focus-inner{
-    padding: 0;
-    border: 0;
-}
-
-.pure-button-primary,
-.pure-button-selected,
-a.pure-button-primary,
-a.pure-button-selected {
-    background-color: rgb(0, 120, 231);
-    color: #fff;
-}
-
 @media all and (max-width:1020px)
 {
     #container, #footer {
@@ -260,14 +278,18 @@ a.pure-button-selected {
 
 <body onload="compareDates()">
 <div id = "container">
-	<h1> WLMAC Late Start</h1>
-	<h2 id = "date"> </h2>
+	<h1 id = "date"> </h1>
 	<p id = "lateStart"> </p>
 	<p id = "tomorrow"> </p>
-	<p class = "number"> School Number: <a href="tel://416-395-3330">416.395.3330</a> </p>
+	<p class = "number"><a href="tel://416-395-3330">416.395.3330</a> </p>
+	<div id = "button_container">
+		<a class = "metro" href="https://www.facebook.com/groups/macevents2014/" target="_blank">Facebook</a>
+		<a class = "metro" href="https://twitter.com/mackenzielyon" target="_blank">Twitter</a>
+		<a class = "metro" href="http://www.wlmac.ca" target="_blank">Website</a>
+		<a class = "metro" href="#" onclick ="toggleVisible();">Calendar</a>
+	</div>
 	<div id = "footer">
 		<p>Developed by Jonathan Galperin, Lead Designer Alex Zvorygin.</p>
-		<a class = "pure-button pure-button-primary" href="#" onclick = "toggleVisible();">View The School Calendar</a>
 		<div id = "calendar">
 			<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=wlmacci%40gmail.com&amp;color=%23060D5E&amp;ctz=America%2FToronto" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
 			</div>
